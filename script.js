@@ -54,8 +54,8 @@ const discountElement =
 const totalElement =
     document.getElementById("total");
 
-const image =
-    document.getElementById("image");
+const imageText =
+    document.getElementById("imageText");
 
 
 /* =========================
@@ -69,15 +69,15 @@ function formatMoney(number) {
 }
 
 
-/* =====================================================
-   CHỨC NĂNG THEO YÊU CẦU BÀI TẬP
-   UPDATE
-===================================================== */
+/* =================================================
+   CHỨC NĂNG UPDATE
+   THEO ĐÚNG YÊU CẦU ĐỀ BÀI
+================================================= */
 
 function update(element) {
 
     /*
-       Kiểm tra xem sự kiện có hoạt động hay không
+       Kiểm tra sự kiện có hoạt động không
     */
 
     console.log("Mouse over image");
@@ -98,48 +98,29 @@ function update(element) {
 
 
     /*
-       Thay đổi văn bản của phần tử có id="image"
+       Thay đổi văn bản
+       của khu vực hiển thị
     */
 
-    document.getElementById("image").setAttribute(
-        "data-text",
-        element.alt
-    );
-
-
-    /*
-       Thay đổi tên sản phẩm
-    */
-
-    document.getElementById("productName").textContent =
+    document.getElementById("imageText").textContent =
         element.alt;
 
 
     /*
-       Thay đổi hình nền của phần tử có id="image"
+       Thay đổi hình nền
+       của phần tử có id="image"
     */
 
     document.getElementById("image").style.backgroundImage =
         "url('" + element.src + "')";
 
-
-    /*
-       Làm hình nền hiển thị đẹp
-    */
-
-    document.getElementById("image").style.backgroundSize =
-        "cover";
-
-    document.getElementById("image").style.backgroundPosition =
-        "center";
-
 }
 
 
-/* =====================================================
-   CHỨC NĂNG THEO YÊU CẦU BÀI TẬP
-   UNDO
-===================================================== */
+/* =================================================
+   CHỨC NĂNG UNDO
+   THEO ĐÚNG YÊU CẦU ĐỀ BÀI
+================================================= */
 
 function undo() {
 
@@ -151,16 +132,7 @@ function undo() {
 
 
     /*
-       Trả lại tên sản phẩm ban đầu
-    */
-
-    document.getElementById("productName").textContent =
-        "Vợt Joola";
-
-
-    /*
        Trả hình nền về trạng thái ban đầu
-       url("")
     */
 
     document.getElementById("image").style.backgroundImage =
@@ -168,12 +140,11 @@ function undo() {
 
 
     /*
-       Xóa thuộc tính phụ
+       Trả văn bản về đúng câu ban đầu
     */
 
-    document.getElementById("image").removeAttribute(
-        "data-text"
-    );
+    document.getElementById("imageText").textContent =
+        "Di chuột qua một hình ảnh bên dưới để hiển thị ở đây.";
 
 }
 
@@ -262,7 +233,7 @@ document
 
             /*
                GIẢM GIÁ 10%
-               Từ 500.000 VNĐ
+               TỪ 500.000 VNĐ
             */
 
             if (subtotal >= 500000) {
@@ -274,7 +245,7 @@ document
 
 
             /*
-               TIỀN PHẢI TRẢ
+               TÍNH TIỀN PHẢI TRẢ
             */
 
             const total =
@@ -282,7 +253,7 @@ document
 
 
             /*
-               HIỂN THỊ
+               HIỂN THỊ KẾT QUẢ
             */
 
             subtotalElement.textContent =
@@ -326,7 +297,7 @@ colorButtons.forEach(
 
 
                 /*
-                   LẤY MÀU
+                   LẤY MÀU ĐƯỢC CHỌN
                 */
 
                 const color =
