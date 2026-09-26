@@ -1,1 +1,187 @@
+```html
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Website mua vợt Pickleball</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>WEBSITE MUA VỢT PICKLEBALL</h1>
+
+        <div class="product-area">
+
+            <!-- KHU VỰC HÌNH ẢNH -->
+            <div
+                id="image"
+                class="image-box"
+                onmouseover="update(productImage)"
+                onmouseout="undo()"
+            >
+
+                <img
+                    id="productImage"
+                    src="votjoola.jpg"
+                    alt="Vợt Joola"
+                >
+
+            </div>
+
+            <!-- TÊN SẢN PHẨM -->
+            <h2 id="productName">
+                Vợt Joola
+            </h2>
+
+            <!-- GIÁ -->
+            <p id="productPrice">
+                Giá: 450000 VNĐ
+            </p>
+
+            <!-- CHỌN SẢN PHẨM -->
+            <div class="form-row">
+
+                <label for="productSelect">
+                    Chọn sản phẩm:
+                </label>
+
+                <select id="productSelect">
+
+                    <option value="joola">
+                        Vợt Joola
+                    </option>
+
+                    <option value="wika">
+                        Vợt Wika
+                    </option>
+
+                    <option value="proton">
+                        Vợt Proton
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- SỐ LƯỢNG -->
+            <div class="form-row">
+
+                <label for="quantity">
+                    Số lượng:
+                </label>
+
+                <input
+                    type="number"
+                    id="quantity"
+                    value="2"
+                    min="1"
+                >
+
+            </div>
+
+            <!-- TÍNH TIỀN -->
+            <button id="calculateBtn">
+                Tính tiền
+            </button>
+
+            <!-- KẾT QUẢ -->
+            <div class="result">
+
+                <p>
+                    Tiền hàng:
+                    <span id="subtotal">0</span>
+                    VNĐ
+                </p>
+
+                <p>
+                    Giảm giá:
+                    <span id="discount">0</span>
+                    VNĐ
+                </p>
+
+                <p>
+                    Phải trả:
+                    <span id="total">0</span>
+                    VNĐ
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <hr>
+
+
+        <!-- ĐỔI MÀU GIAO DIỆN -->
+
+        <section class="color-section">
+
+            <h2>
+                Đổi màu giao diện
+            </h2>
+
+            <div class="color-buttons">
+
+                <button
+                    class="color-btn blue"
+                    data-color="blue">
+                    Xanh
+                </button>
+
+                <button
+                    class="color-btn pink"
+                    data-color="pink">
+                    Hồng
+                </button>
+
+                <button
+                    class="color-btn yellow"
+                    data-color="yellow">
+                    Vàng
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <hr>
+
+
+        <!-- BẢNG GIÁ -->
+
+        <section class="price-section">
+
+            <h2>
+                Bảng giá
+            </h2>
+
+            <button id="priceBtn">
+                Xem bảng giá
+            </button>
+
+            <div
+                id="priceList"
+                class="price-list">
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+```
 
