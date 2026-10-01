@@ -1,4 +1,3 @@
-```css
 * {
     box-sizing: border-box;
 }
@@ -6,363 +5,282 @@
 
 body {
     margin: 0;
-
     font-family: Arial, sans-serif;
-
     background-color: white;
-
     color: #111111;
-
     transition: 0.3s;
 }
 
 
 .container {
     width: 760px;
-
     max-width: 92%;
-
     margin: 35px auto;
-
     text-align: center;
 }
 
 
-/* =========================
-   TIÊU ĐỀ
-========================= */
-
 h1 {
     font-size: 32px;
-
     margin-bottom: 30px;
 }
 
 
-/* =========================
-   KHU VỰC SẢN PHẨM
-========================= */
-
-.product-area {
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-}
-
-
-/* =========================
-   KHUNG ẢNH
-========================= */
-
-.image-box {
-
-    width: 300px;
-
-    height: 300px;
-
-    border-radius: 50%;
-
-    overflow: hidden;
-
-    background-color: #eeeeee;
-
-    background-repeat: no-repeat;
-
-    background-position: center;
-
-    background-size: cover;
-
-    border: 8px solid #eeeeee;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    margin-bottom: 18px;
-
-    transition: 0.3s;
-
-    cursor: pointer;
-}
-
-
-/* =========================
-   ẢNH VỢT
-========================= */
-
-.image-box img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-
-    transition: 0.3s;
-}
-
-
-/*
-   Khi di chuột vào vùng ảnh
-*/
-
-.image-box:hover img {
-
-    opacity: 0.15;
-}
-
-
-/* =========================
-   TÊN SẢN PHẨM
-========================= */
-
 h2 {
-
     margin: 10px 0;
-
     font-size: 24px;
 }
 
 
+.product-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.image-box {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #eeeeee;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border: 8px solid #eeeeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 18px;
+    transition: 0.3s;
+    cursor: pointer;
+    position: relative;
+}
+
+
+.image-box:focus {
+    outline: 3px solid #2874e6;
+    outline-offset: 5px;
+}
+
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: 0.3s;
+}
+
+
+.image-box:hover img {
+    opacity: 0.15;
+}
+
+
+.image-box span {
+    position: absolute;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    pointer-events: none;
+}
+
+
+.thumbnail-gallery {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 650px;
+    margin-bottom: 20px;
+}
+
+
+.thumbnail {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #dddddd;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+.thumbnail:hover {
+    transform: scale(1.08);
+    border-color: #2874e6;
+}
+
+
+.thumbnail:focus {
+    outline: 3px solid #111111;
+    outline-offset: 3px;
+    transform: scale(1.08);
+}
+
+
 #productPrice {
-
     font-size: 18px;
-
     margin: 8px 0 20px;
 }
 
 
-/* =========================
-   FORM
-========================= */
-
 .form-row {
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     gap: 10px;
-
     margin: 12px 0;
-
     font-size: 17px;
 }
 
 
-/* =========================
-   SELECT
-========================= */
-
-select {
-
+select,
+input {
     width: 180px;
-
     padding: 9px 10px;
-
     font-size: 16px;
-
-    border: 1px solid #999999;
-
+    border: 1px solid #777777;
     border-radius: 5px;
-
     background-color: white;
 }
 
 
-/* =========================
-   INPUT
-========================= */
-
-input {
-
-    width: 180px;
-
-    padding: 9px 10px;
-
-    font-size: 16px;
-
-    border: 1px solid #999999;
-
-    border-radius: 5px;
-}
-
-
-/* =========================
-   BUTTON
-========================= */
-
 button {
-
     border: none;
-
     border-radius: 6px;
-
     padding: 10px 18px;
-
     font-size: 16px;
-
     cursor: pointer;
-
     background-color: #eeeeee;
-
     transition: 0.2s;
 }
 
 
 button:hover {
-
     transform: translateY(-2px);
-
     opacity: 0.9;
 }
 
 
-/* =========================
-   NÚT TÍNH TIỀN
-========================= */
+button:focus,
+select:focus,
+input:focus {
+    outline: 3px solid #2874e6;
+    outline-offset: 3px;
+}
+
 
 #calculateBtn {
-
     margin-top: 12px;
-
     background-color: #eeeeee;
 }
 
 
-/* =========================
-   KẾT QUẢ
-========================= */
-
 .result {
-
     margin-top: 18px;
-
     font-size: 18px;
-
     line-height: 1.25;
 }
 
 
 .result p {
-
     margin: 4px;
 }
 
 
-/* =========================
-   ĐƯỜNG KẺ
-========================= */
-
 hr {
-
     margin: 30px 0;
-
     border: 0;
-
     border-top: 1px solid #999999;
 }
 
 
-/* =========================
-   ĐỔI MÀU
-========================= */
-
 .color-section h2 {
-
     margin-bottom: 15px;
 }
 
 
 .color-buttons {
-
     display: flex;
-
     justify-content: center;
-
     gap: 14px;
 }
 
 
 .color-btn {
-
     min-width: 90px;
-
     color: white;
-
     font-weight: bold;
 }
 
 
 .blue {
-
     background-color: #2874e6;
 }
 
 
 .pink {
-
     background-color: #e83e70;
 }
 
 
 .yellow {
-
-    background-color: #d9a000;
+    background-color: #b88600;
 }
 
 
-/* =========================
-   BẢNG GIÁ
-========================= */
-
 .price-section h2 {
-
     margin-bottom: 15px;
 }
 
 
 .price-list {
-
     text-align: left;
-
     width: 330px;
-
     margin: 18px auto 0;
-
     font-size: 17px;
-
     line-height: 1.7;
 }
 
 
-/* =========================
-   MÀU NỀN
-========================= */
-
 body.theme-blue {
-
     background-color: #eaf3ff;
 }
 
 
 body.theme-pink {
-
     background-color: #fff0f5;
 }
 
 
 body.theme-yellow {
-
     background-color: #fff9df;
 }
-```
+
+
+@media (max-width: 700px) {
+
+    .thumbnail-gallery {
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .thumbnail-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .image-box {
+        width: 260px;
+        height: 260px;
+    }
+
+}
