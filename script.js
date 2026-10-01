@@ -1,8 +1,3 @@
-```javascript
-/* =========================
-   DANH SÁCH SẢN PHẨM
-========================= */
-
 const products = {
 
     joola: {
@@ -25,10 +20,6 @@ const products = {
 
 };
 
-
-/* =========================
-   LẤY CÁC PHẦN TỬ HTML
-========================= */
 
 const productSelect =
     document.getElementById("productSelect");
@@ -57,10 +48,9 @@ const totalElement =
 const imageText =
     document.getElementById("imageText");
 
+const imageBox =
+    document.getElementById("image");
 
-/* =========================
-   ĐỊNH DẠNG TIỀN
-========================= */
 
 function formatMoney(number) {
 
@@ -69,90 +59,110 @@ function formatMoney(number) {
 }
 
 
-/* =================================================
-   CHỨC NĂNG UPDATE
-   THEO ĐÚNG YÊU CẦU ĐỀ BÀI
-================================================= */
-
 function update(element) {
 
-    /*
-       Kiểm tra sự kiện có hoạt động không
-    */
-
-    console.log("Mouse over image");
-
-
-    /*
-       In ALT của hình ảnh
-    */
+    console.log("UPDATE EVENT TRIGGERED");
 
     console.log("Alt:", element.alt);
 
-
-    /*
-       In SOURCE của hình ảnh
-    */
-
     console.log("Source:", element.src);
 
-
-    /*
-       Thay đổi văn bản
-       của khu vực hiển thị
-    */
-
-    document.getElementById("imageText").textContent =
+    imageText.textContent =
         element.alt;
 
-
-    /*
-       Thay đổi hình nền
-       của phần tử có id="image"
-    */
-
-    document.getElementById("image").style.backgroundImage =
+    imageBox.style.backgroundImage =
         "url('" + element.src + "')";
 
 }
 
 
-/* =================================================
-   CHỨC NĂNG UNDO
-   THEO ĐÚNG YÊU CẦU ĐỀ BÀI
-================================================= */
-
 function undo() {
 
-    /*
-       Kiểm tra sự kiện
-    */
+    console.log("UNDO EVENT TRIGGERED");
 
-    console.log("Mouse out image");
+    imageBox.style.backgroundImage =
+        "none";
 
-
-    /*
-       Trả hình nền về trạng thái ban đầu
-    */
-
-    document.getElementById("image").style.backgroundImage =
-        "url('')";
-
-
-    /*
-       Trả văn bản về đúng câu ban đầu
-    */
-
-    document.getElementById("imageText").textContent =
-        "Di chuột qua một hình ảnh bên dưới để hiển thị ở đây.";
+    imageText.textContent =
+        "Di chuột qua hoặc dùng phím Tab để xem hình ảnh.";
 
 }
 
 
-/* =========================
-   CHỨC NĂNG 1
-   CHỌN SẢN PHẨM
-========================= */
+function selectImage(element) {
+
+    console.log("IMAGE SELECTED");
+
+    productImage.src =
+        element.src;
+
+    productImage.alt =
+        element.alt;
+
+}
+
+
+function addTabFocus() {
+
+    console.log("PAGE LOADED");
+
+    const images =
+        document.querySelectorAll(".thumbnail");
+
+    for (
+        let i = 0;
+        i < images.length;
+        i++
+    ) {
+
+        images[i].setAttribute(
+            "tabindex",
+            "0"
+        );
+
+        images[i].setAttribute(
+            "role",
+            "button"
+        );
+
+        console.log(
+            "Tabindex added to image " +
+            (i + 1)
+        );
+
+        images[i].addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+
+                    event.preventDefault();
+
+                    selectImage(this);
+
+                    console.log(
+                        "Keyboard selected image " +
+                        (i + 1)
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+}
+
+
+window.addEventListener(
+    "load",
+    addTabFocus
+);
+
 
 productSelect.addEventListener(
     "change",
@@ -161,20 +171,18 @@ productSelect.addEventListener(
         const selectedProduct =
             products[this.value];
 
-
         productName.textContent =
             selectedProduct.name;
 
-
         productPrice.textContent =
             "Giá: " +
-            formatMoney(selectedProduct.price) +
+            formatMoney(
+                selectedProduct.price
+            ) +
             " VNĐ";
-
 
         productImage.src =
             selectedProduct.image;
-
 
         productImage.alt =
             selectedProduct.name;
@@ -182,11 +190,6 @@ productSelect.addEventListener(
     }
 );
 
-
-/* =========================
-   CHỨC NĂNG 2
-   TÍNH TIỀN
-========================= */
 
 document
     .getElementById("calculateBtn")
@@ -197,14 +200,8 @@ document
             const selectedProduct =
                 products[productSelect.value];
 
-
             const quantity =
                 Number(quantityInput.value);
-
-
-            /*
-               KIỂM TRA SỐ LƯỢNG
-            */
 
             if (
                 quantity < 1 ||
@@ -215,26 +212,17 @@ document
                     "Vui lòng nhập số lượng lớn hơn 0."
                 );
 
+                quantityInput.focus();
+
                 return;
+
             }
-
-
-            /*
-               TÍNH TIỀN HÀNG
-            */
 
             const subtotal =
                 selectedProduct.price *
                 quantity;
 
-
             let discount = 0;
-
-
-            /*
-               GIẢM GIÁ 10%
-               TỪ 500.000 VNĐ
-            */
 
             if (subtotal >= 500000) {
 
@@ -243,18 +231,8 @@ document
 
             }
 
-
-            /*
-               TÍNH TIỀN PHẢI TRẢ
-            */
-
             const total =
                 subtotal - discount;
-
-
-            /*
-               HIỂN THỊ KẾT QUẢ
-            */
 
             subtotalElement.textContent =
                 formatMoney(subtotal);
@@ -269,11 +247,6 @@ document
     );
 
 
-/* =========================
-   CHỨC NĂNG 3
-   ĐỔI MÀU GIAO DIỆN
-========================= */
-
 const colorButtons =
     document.querySelectorAll(".color-btn");
 
@@ -285,31 +258,22 @@ colorButtons.forEach(
             "click",
             function () {
 
-                /*
-                   XÓA MÀU CŨ
-                */
-
                 document.body.classList.remove(
                     "theme-blue",
                     "theme-pink",
                     "theme-yellow"
                 );
 
-
-                /*
-                   LẤY MÀU ĐƯỢC CHỌN
-                */
-
                 const color =
                     this.dataset.color;
 
-
-                /*
-                   THÊM MÀU MỚI
-                */
-
                 document.body.classList.add(
                     "theme-" + color
+                );
+
+                console.log(
+                    "Theme changed to:",
+                    color
                 );
 
             }
@@ -318,11 +282,6 @@ colorButtons.forEach(
     }
 );
 
-
-/* =========================
-   CHỨC NĂNG 4
-   HIỂN THỊ BẢNG GIÁ
-========================= */
 
 document
     .getElementById("priceBtn")
@@ -334,7 +293,6 @@ document
                 document.getElementById(
                     "priceList"
                 );
-
 
             priceList.innerHTML = `
 
@@ -370,4 +328,3 @@ document
 
         }
     );
-```
