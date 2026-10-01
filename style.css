@@ -52,16 +52,9 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
     transition: 0.3s;
-    cursor: pointer;
     position: relative;
-}
-
-
-.image-box:focus {
-    outline: 3px solid #2874e6;
-    outline-offset: 5px;
 }
 
 
@@ -74,24 +67,31 @@ h2 {
 }
 
 
-.image-box:hover img {
-    opacity: 0.15;
-}
-
-
 .image-box span {
     position: absolute;
     padding: 10px;
     font-weight: bold;
     text-align: center;
     pointer-events: none;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+
+.image-box:hover img {
+    opacity: 0.15;
+}
+
+
+.image-box:hover span {
+    opacity: 1;
 }
 
 
 .thumbnail-gallery {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
+    gap: 12px;
     width: 100%;
     max-width: 650px;
     margin-bottom: 20px;
@@ -116,8 +116,8 @@ h2 {
 
 
 .thumbnail:focus {
-    outline: 3px solid #111111;
-    outline-offset: 3px;
+    outline: 3px solid #2874e6;
+    outline-offset: 4px;
     transform: scale(1.08);
 }
 
@@ -140,7 +140,7 @@ h2 {
 
 select,
 input {
-    width: 180px;
+    width: 200px;
     padding: 9px 10px;
     font-size: 16px;
     border: 1px solid #777777;
@@ -188,7 +188,7 @@ input:focus {
 
 
 .result p {
-    margin: 4px;
+    margin: 6px;
 }
 
 
@@ -240,10 +240,22 @@ hr {
 
 .price-list {
     text-align: left;
-    width: 330px;
+    width: 400px;
+    max-width: 100%;
     margin: 18px auto 0;
     font-size: 17px;
-    line-height: 1.7;
+    line-height: 1.8;
+}
+
+
+.price-list ol {
+    margin: 0;
+    padding-left: 35px;
+}
+
+
+.price-list li {
+    padding-left: 5px;
 }
 
 
@@ -281,6 +293,10 @@ body.theme-yellow {
     .image-box {
         width: 260px;
         height: 260px;
+    }
+
+    .form-row {
+        flex-direction: column;
     }
 
 }
