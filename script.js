@@ -1,21 +1,39 @@
 const products = {
 
+    franklin: {
+        name: "Vợt Franklin",
+        price: 550000,
+        image: "votfranklin.png"
+    },
+
     joola: {
         name: "Vợt Joola",
         price: 450000,
         image: "votjoola.jpg"
     },
 
-    wika: {
-        name: "Vợt Wika",
-        price: 650000,
-        image: "votwika.jpg"
+    loco: {
+        name: "Vợt Loco",
+        price: 700000,
+        image: "votloco.webp"
     },
 
     proton: {
         name: "Vợt Proton",
         price: 1200000,
         image: "votproton.jpg"
+    },
+
+    rpm: {
+        name: "Vợt RPM",
+        price: 850000,
+        image: "votrpm.webp"
+    },
+
+    wika: {
+        name: "Vợt Wika",
+        price: 650000,
+        image: "votwika.jpg"
     }
 
 };
@@ -61,7 +79,7 @@ function formatMoney(number) {
 
 function update(element) {
 
-    console.log("UPDATE EVENT TRIGGERED");
+    console.log("Mouse over / focus event");
 
     console.log("Alt:", element.alt);
 
@@ -78,20 +96,20 @@ function update(element) {
 
 function undo() {
 
-    console.log("UNDO EVENT TRIGGERED");
+    console.log("Mouse leave / blur event");
 
     imageBox.style.backgroundImage =
         "none";
 
     imageText.textContent =
-        "Di chuột qua hoặc dùng phím Tab để xem hình ảnh.";
+        "Di chuột qua hoặc dùng phím Tab vào hình ảnh.";
 
 }
 
 
 function selectImage(element) {
 
-    console.log("IMAGE SELECTED");
+    console.log("Image selected:", element.alt);
 
     productImage.src =
         element.src;
@@ -99,12 +117,15 @@ function selectImage(element) {
     productImage.alt =
         element.alt;
 
+    imageText.textContent =
+        element.alt;
+
 }
 
 
 function addTabFocus() {
 
-    console.log("PAGE LOADED");
+    console.log("Page loaded successfully");
 
     const images =
         document.querySelectorAll(".thumbnail");
@@ -132,7 +153,7 @@ function addTabFocus() {
 
         images[i].addEventListener(
             "keydown",
-            function (event) {
+            function(event) {
 
                 if (
                     event.key === "Enter" ||
@@ -144,8 +165,8 @@ function addTabFocus() {
                     selectImage(this);
 
                     console.log(
-                        "Keyboard selected image " +
-                        (i + 1)
+                        "Keyboard selected:",
+                        this.alt
                     );
 
                 }
@@ -166,7 +187,7 @@ window.addEventListener(
 
 productSelect.addEventListener(
     "change",
-    function () {
+    function() {
 
         const selectedProduct =
             products[this.value];
@@ -187,6 +208,11 @@ productSelect.addEventListener(
         productImage.alt =
             selectedProduct.name;
 
+        console.log(
+            "Product changed:",
+            selectedProduct.name
+        );
+
     }
 );
 
@@ -195,7 +221,7 @@ document
     .getElementById("calculateBtn")
     .addEventListener(
         "click",
-        function () {
+        function() {
 
             const selectedProduct =
                 products[productSelect.value];
@@ -218,11 +244,14 @@ document
 
             }
 
+
             const subtotal =
                 selectedProduct.price *
                 quantity;
 
+
             let discount = 0;
+
 
             if (subtotal >= 500000) {
 
@@ -231,8 +260,10 @@ document
 
             }
 
+
             const total =
                 subtotal - discount;
+
 
             subtotalElement.textContent =
                 formatMoney(subtotal);
@@ -243,6 +274,11 @@ document
             totalElement.textContent =
                 formatMoney(total);
 
+
+            console.log(
+                "Calculation completed"
+            );
+
         }
     );
 
@@ -252,11 +288,11 @@ const colorButtons =
 
 
 colorButtons.forEach(
-    function (button) {
+    function(button) {
 
         button.addEventListener(
             "click",
-            function () {
+            function() {
 
                 document.body.classList.remove(
                     "theme-blue",
@@ -264,12 +300,15 @@ colorButtons.forEach(
                     "theme-yellow"
                 );
 
+
                 const color =
                     this.dataset.color;
+
 
                 document.body.classList.add(
                     "theme-" + color
                 );
+
 
                 console.log(
                     "Theme changed to:",
@@ -287,16 +326,25 @@ document
     .getElementById("priceBtn")
     .addEventListener(
         "click",
-        function () {
+        function() {
 
             const priceList =
                 document.getElementById(
                     "priceList"
                 );
 
+
             priceList.innerHTML = `
 
                 <ol>
+
+                    <li>
+                        Vợt Franklin -
+                        ${formatMoney(
+                            products.franklin.price
+                        )}
+                        VNĐ
+                    </li>
 
                     <li>
                         Vợt Joola -
@@ -307,9 +355,9 @@ document
                     </li>
 
                     <li>
-                        Vợt Wika -
+                        Vợt Loco -
                         ${formatMoney(
-                            products.wika.price
+                            products.loco.price
                         )}
                         VNĐ
                     </li>
@@ -322,9 +370,30 @@ document
                         VNĐ
                     </li>
 
+                    <li>
+                        Vợt RPM -
+                        ${formatMoney(
+                            products.rpm.price
+                        )}
+                        VNĐ
+                    </li>
+
+                    <li>
+                        Vợt Wika -
+                        ${formatMoney(
+                            products.wika.price
+                        )}
+                        VNĐ
+                    </li>
+
                 </ol>
 
             `;
+
+
+            console.log(
+                "Price list displayed: 6 products"
+            );
 
         }
     );
