@@ -1,58 +1,118 @@
-```html
 <!DOCTYPE html>
 <html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Website mua vợt Pickleball</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="container">
+    <main class="container">
 
         <h1>WEBSITE MUA VỢT PICKLEBALL</h1>
 
-        <div class="product-area">
+        <section class="product-area" aria-label="Thông tin sản phẩm">
 
-            <!-- KHU VỰC HÌNH ẢNH -->
             <div
                 id="image"
                 class="image-box"
                 onmouseover="update(productImage)"
-                onmouseout="undo()"
+                onmouseleave="undo()"
+                onfocus="update(productImage)"
+                onblur="undo()"
+                tabindex="0"
+                aria-label="Khu vực hiển thị hình ảnh sản phẩm"
             >
 
                 <img
                     id="productImage"
                     src="votjoola.jpg"
-                    alt="Vợt Joola"
+                    alt="Vợt Joola Pickleball"
                 >
 
                 <span id="imageText">
-                    Di chuột qua một hình ảnh bên dưới để hiển thị ở đây.
+                    Di chuột qua hoặc dùng phím Tab để xem hình ảnh.
                 </span>
 
             </div>
 
+            <div class="thumbnail-gallery">
 
-            <!-- TÊN SẢN PHẨM -->
-            <h2 id="productName">
-                Vợt Joola
-            </h2>
+                <img
+                    src="votfranklin.jpg"
+                    alt="Vợt Franklin Pickleball"
+                    class="thumbnail"
+                    onclick="selectImage(this)"
+                    onmouseover="update(this)"
+                    onmouseleave="undo()"
+                    onfocus="update(this)"
+                    onblur="undo()"
+                >
 
+                <img
+                    src="votjoola.jpg"
+                    alt="Vợt Joola Pickleball"
+                    class="thumbnail"
+                    onclick="selectImage(this)"
+                    onmouseover="update(this)"
+                    onmouseleave="undo()"
+                    onfocus="update(this)"
+                    onblur="undo()"
+                >
 
-            <!-- GIÁ -->
-            <p id="productPrice">
-                Giá: 450000 VNĐ
-            </p>
+                <img
+                    src="votloco.jpg"
+                    alt="Vợt Loco Pickleball"
+                    class="thumbnail"
+                    onclick="selectImage(this)"
+                    onmouseover="update(this)"
+                    onmouseleave="undo()"
+                    onfocus="update(this)"
+                    onblur="undo()"
+                >
 
+                <img
+                    src="votproton.jpg"
+                    alt="Vợt Proton Pickleball"
+                    class="thumbnail"
+                    onclick="selectImage(this)"
+                    onmouseover="update(this)"
+                    onmouseleave="undo()"
+                    onfocus="update(this)"
+                    onblur="undo()"
+                >
 
-            <!-- CHỌN SẢN PHẨM -->
+                <img
+                    src="votrpm.jpg"
+                    alt="Vợt RPM Pickleball"
+                    class="thumbnail"
+                    onclick="selectImage(this)"
+                    onmouseover="update(this)"
+                    onmouseleave="undo()"
+                    onfocus="update(this)"
+                    onblur="undo()"
+                >
+
+                <img
+                    src="votwika.jpg"
+                    alt="Vợt Wika Pickleball"
+                    class="thumbnail"
+                    onclick="selectImage(this)"
+                    onmouseover="update(this)"
+                    onmouseleave="undo()"
+                    onfocus="update(this)"
+                    onblur="undo()"
+                >
+
+            </div>
+
+            <h2 id="productName">Vợt Joola</h2>
+
+            <p id="productPrice">Giá: 450.000 VNĐ</p>
+
             <div class="form-row">
 
                 <label for="productSelect">
@@ -77,8 +137,6 @@
 
             </div>
 
-
-            <!-- SỐ LƯỢNG -->
             <div class="form-row">
 
                 <label for="quantity">
@@ -90,19 +148,16 @@
                     id="quantity"
                     value="2"
                     min="1"
+                    aria-label="Số lượng sản phẩm"
                 >
 
             </div>
 
-
-            <!-- TÍNH TIỀN -->
-            <button id="calculateBtn">
+            <button id="calculateBtn" type="button">
                 Tính tiền
             </button>
 
-
-            <!-- KẾT QUẢ -->
-            <div class="result">
+            <div class="result" aria-live="polite">
 
                 <p>
                     Tiền hàng:
@@ -124,37 +179,37 @@
 
             </div>
 
-        </div>
-
+        </section>
 
         <hr>
 
-
-        <!-- ĐỔI MÀU GIAO DIỆN -->
-
         <section class="color-section">
 
-            <h2>
-                Đổi màu giao diện
-            </h2>
+            <h2>Đổi màu giao diện</h2>
 
             <div class="color-buttons">
 
                 <button
+                    type="button"
                     class="color-btn blue"
-                    data-color="blue">
+                    data-color="blue"
+                >
                     Xanh
                 </button>
 
                 <button
+                    type="button"
                     class="color-btn pink"
-                    data-color="pink">
+                    data-color="pink"
+                >
                     Hồng
                 </button>
 
                 <button
+                    type="button"
                     class="color-btn yellow"
-                    data-color="yellow">
+                    data-color="yellow"
+                >
                     Vàng
                 </button>
 
@@ -162,35 +217,31 @@
 
         </section>
 
-
         <hr>
-
-
-        <!-- BẢNG GIÁ -->
 
         <section class="price-section">
 
-            <h2>
-                Bảng giá
-            </h2>
+            <h2>Bảng giá</h2>
 
-            <button id="priceBtn">
+            <button
+                id="priceBtn"
+                type="button"
+            >
                 Xem bảng giá
             </button>
 
             <div
                 id="priceList"
-                class="price-list">
-            </div>
+                class="price-list"
+                aria-live="polite"
+            ></div>
 
         </section>
 
-    </div>
-
+    </main>
 
     <script src="script.js"></script>
 
 </body>
 
 </html>
-```
